@@ -1,0 +1,30 @@
+buildscript {
+    repositories {
+        mavenCentral()
+        maven {
+            url 'http://oss.sonatype.org/content/repositories/snapshots'
+        }
+    }
+    dependencies {
+        classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.0.0-beta-1103'
+    }
+}
+
+apply plugin: "kotlin" // or apply plugin: "kotlin2js" if targeting JavaScript
+
+repositories {
+    mavenCentral()
+    jcenter()
+    maven {
+        url 'http://oss.sonatype.org/content/repositories/snapshots'
+    }
+    maven {
+        url "https://jitpack.io"
+    }
+}
+
+dependencies {
+    compile 'org.jetbrains.kotlin:kotlin-stdlib:1.0.0-beta-1103'
+    compile 'com.github.jkcclemens:khttp:-SNAPSHOT'
+    compile 'com.beust:klaxon:0.19'
+}
