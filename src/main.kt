@@ -46,11 +46,11 @@ class Trello(key: String, token: String) {
         return gson.fromJson<Boards>(response.text)
     }
 
-    public fun getListsOnBoard(boardId: String) : TrelloList? {
+    public fun getListsOnBoard(boardId: String) : List<TrelloList>? {
         val response = makeRequest("get", "/boards/$boardId/lists")
 
         if (response.statusCode == 200)
-            return gson.fromJson<TrelloList>(response.text)
+            return gson.fromJson<List<TrelloList>>(response.text)
         else
             throw Exception("request failed!")
 
