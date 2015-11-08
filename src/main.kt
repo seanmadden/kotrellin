@@ -14,8 +14,11 @@ fun main(args: Array<String>) {
     val choreBoardMetadata = boards?.single { it.name == "Chores" }
     val choreBoardId = choreBoardMetadata?.id ?: throw InvalidParameterException("No Board found")
 
-    var choreLists = trello.getListsOnBoard(choreBoardId)
-    println(choreLists)
+    val choreLists = trello.getListsOnBoard(choreBoardId)
+    val firstChoreListId = choreLists?.get(1)?.id ?: return;
+    val choreCardsOnFirstList = trello.getCardsOnList(firstChoreListId)
+    println(choreCardsOnFirstList?.get(0) ?: "No cards")
+
 
 }
 
@@ -27,6 +30,7 @@ class Trello(key: String, token: String) {
     private val gson = Gson()
 
     private fun makeRequest(verb: String, url: String) : Response {
+        //TODO: Move response code handling here
         return get("$apiUrl$url", params = mapOf(
                 "key" to key,
                 "token" to token
@@ -54,6 +58,24 @@ class Trello(key: String, token: String) {
         else
             throw Exception("request failed!")
 
+    }
+
+    public fun getCardsOnList(listId: String) : List<Card>? {
+        val response = makeRequest("get", "/lists/$listId/cards")
+
+        if (response.statusCode == 200)
+            return gson.fromJson<List<Card>>(response.text)
+        else
+            throw Exception("request failed!")
+    }
+
+    public fun getCard(cardId: String) : Card? {
+        val response = makeRequest("get", "/cards/$cardId/")
+
+        if (response.statusCode == 200)
+            return gson.fromJson<Card>(response.text)
+        else
+            throw Exception("request failed!")
     }
 
 }
