@@ -17,7 +17,9 @@ fun main(args: Array<String>) {
     val choreLists = trello.getListsOnBoard(choreBoardId)
     val firstChoreListId = choreLists?.get(1)?.id ?: return;
     val choreCardsOnFirstList = trello.getCardsOnList(firstChoreListId)
-    println(choreCardsOnFirstList?.get(0) ?: "No cards")
+    var chores = choreCardsOnFirstList?.filter { it.name.toLowerCase() != "schedule" }
+    val choreList = chores?.map { it.name }
+    println(choreList)
 
 
 }
