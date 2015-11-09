@@ -6,8 +6,3 @@ public data class TrelloList(
         var pos: Int,
         var subscribed: Boolean
 )
-
-public data class CardMetadata(
-        val id: String,
-        var name: String
-)

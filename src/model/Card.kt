@@ -26,7 +26,7 @@ public data class Card (
     val url: String
 )
 
-public class Badges (
+public data class Badges (
         val votes: Int,
         val viewingMemberVoted: Boolean,
         val subscribed: Boolean,
@@ -38,4 +38,9 @@ public class Badges (
         val description: Boolean,
         val due: String?
 
+)
+
+public data class CardMetadata(
+        val id: String,
+        var name: String
 )
