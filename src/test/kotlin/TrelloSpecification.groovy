@@ -8,6 +8,7 @@ class TrelloSpecification extends Specification {
             def token = "qwer"
 
             def trello = new Trello(key, token)
+
         expect:
             trello.apiVersion == "1"
             trello.apiUrl == "https://api.trello.com/1"
