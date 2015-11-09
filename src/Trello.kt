@@ -3,6 +3,22 @@ import com.github.salomonbrys.kotson.*
 import khttp.get
 import khttp.responses.Response
 
+/**
+ * Kotrellin - A Kotlin Trello library.
+ *
+ * My Idea is this:
+ *
+ * Trello.get(card: Card) : Card        - To get an entity, pass an entity to the get method. Trello will fetch the
+ *                                        card from the server that matches the ID on the original card.
+ *
+ * Trello.post(card: Card) : Card       - To create a new card, pass a card object. An exception will be thrown if the
+ *                                        http request fails. Returns the created card.
+ *
+ * Trello.put(card: Card) : Card        - Returns the updated card.
+ *
+ * Trello.delete(card: Card)            - TODO: Figure out what to do for return type
+ *
+ */
 class Trello(key: String, token: String) {
     private val apiVersion = "1"
     private val apiUrl = "https://api.trello.com/$apiVersion"
