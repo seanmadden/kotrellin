@@ -29,6 +29,7 @@ dependencies {
     compile 'com.github.jkcclemens:khttp:-SNAPSHOT'
     compile 'com.beust:klaxon:0.19'
     compile 'com.github.salomonbrys.kotson:kotson:1.6.0'
+    compile 'org.spockframework:spock-core:1.0-groovy-2.4'
 }
 
 idea {
