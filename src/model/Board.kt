@@ -1,18 +1,25 @@
-public class Board {
+public class Board(
+       id: String = "",
+       name: String = "",
+       lists: List<TrelloList> = listOf()){
 
-    constructor(id: String = "", name: String = "", lists: List<ListMetadata> = listOf()) {
+    private var id: String
+    private var name: String
+    private var lists: List<TrelloList>
+
+    init {
         this.id = id
         this.name = name
         this.lists = lists
     }
 
-    private var id: String
-    private var name: String
-    private var lists: List<ListMetadata>
+    fun addList(list: List<TrelloList>) {
+        lists += list
+    }
 
 }
 
 public data class ListMetadata(
-        val id: String,
-        var name: String
+        val id: String = "",
+        var name: String = ""
 )
