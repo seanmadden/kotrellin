@@ -16,8 +16,9 @@ fun main(args: Array<String>) {
     val firstChoreListId = choreLists?.get(1)?.id ?: return;
     val choreCardsOnFirstList = trello.getCardsOnList(firstChoreListId)
     var chores = choreCardsOnFirstList?.filter { it.name.toLowerCase() != "schedule" }
-    val choreList = chores?.map { it.name }
+    val choreList = chores?.map { it.id }
     var choreChecklist = Checklist("Chores")
+    val board = Board(name = "board1")
     println(choreChecklist.checkListItems)
 
     choreList?.forEach { choreChecklist.appendToList(CheckListItem("incomplete", "id-2", it, null, 123L)) }

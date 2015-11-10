@@ -1,7 +1,7 @@
 public class Board(
        id: String = "",
        name: String = "",
-       lists: List<TrelloList> = listOf()){
+       lists: List<TrelloList> = listOf() ){
 
     private var id: String
     private var name: String
@@ -13,7 +13,7 @@ public class Board(
         this.lists = lists
     }
 
-    fun addList(list: List<TrelloList>) {
+    fun addList(list: TrelloList) {
         lists += list
     }
 
