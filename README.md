@@ -3,4 +3,4 @@
 Trello client written in Kotlin
 
 **TODO**:
-* Specify fields for calls
+* Be able to parse the json and then fetch the child objects
