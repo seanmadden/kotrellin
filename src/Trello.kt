@@ -28,10 +28,26 @@ class Trello(key: String, token: String) {
 
     private fun makeRequest(verb: String, url: String) : Response {
         //TODO: Move response code handling here
-        return get("$apiUrl$url", params = mapOf(
+        val response = get("$apiUrl$url", params = mapOf(
                 "key" to key,
                 "token" to token
         ))
+
+        return response
+    }
+
+    public fun get(card: Card) : Card {
+        if (card.id.isEmpty())
+            return card
+
+        val url = "/cards/${card.id}"
+        val response = makeRequest("get", url)
+
+        if (response.statusCode !== 200)
+            throw RuntimeException("Error in response: Status Code[${response.statusCode}]\nResponse: $response}")
+
+        return gson.fromJson<Card>(response.text) ?: card
+
     }
 
     public fun getMemberBoards(memberIdOrName: String) : List<Boards>? {
