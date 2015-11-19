@@ -1,5 +1,6 @@
 import com.google.gson.Gson
 import com.github.salomonbrys.kotson.*
+import com.google.gson.GsonBuilder
 import khttp.get
 import khttp.responses.Response
 
@@ -24,7 +25,7 @@ class Trello(key: String, token: String) {
     private val apiUrl = "https://api.trello.com/$apiVersion"
     private val key = key
     private val token = token
-    private val gson = Gson()
+    private val gson = GsonBuilder().setPrettyPrinting().create()
 
     private fun makeRequest(verb: String, url: String) : Response {
         //TODO: Move response code handling here
@@ -47,7 +48,12 @@ class Trello(key: String, token: String) {
             throw RuntimeException("Error in response: Status Code[${response.statusCode}]\nResponse: $response}")
 
         return gson.fromJson<Card>(response.text) ?: card
+    }
 
+    public fun save(card: Card) : String {
+        //For now, just print it to json
+        val json = gson.toJson(card)
+        return json
     }
 
     public fun getMemberBoards(memberIdOrName: String) : List<Boards>? {
