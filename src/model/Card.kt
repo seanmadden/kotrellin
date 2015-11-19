@@ -1,30 +1,35 @@
-public data class Card (
-    val id: String = "",
-    val badges: Badges = Badges(),
-    val checkItemStates: List<Any> = kotlin.emptyList(),
-    val closed: Boolean = false,
-    val dateLastActivity: String? = "",
-    val desc: String = "",
-    val descData: Any? = "",
-    val due: String? = "",
-    val email: String? = "",
-    val idAttachmentCover: String? = "",
-    val idBoard: String = "",
-    val idChecklists: List<Checklist> = kotlin.emptyList(),
-    val idLabels: List<Any> = kotlin.emptyList(),
-    val idList: String = "",
-    val idMembers: List<Any> = kotlin.emptyList(),
-    val idMembersVoted: List<Any> = kotlin.emptyList(),
-    val idShort: Int = 0,
-    val labels: List<Any> = kotlin.emptyList(),
-    val manualCoverAttachment: Boolean? = false,
-    val name: String = "",
-    val pos: Double = 0.0,
-    val shortLink: String = "",
-    val shortUrl: String = "",
-    val subscribed: Boolean? = false,
-    val url: String = ""
-)
+public class Card (
+    var id: String = "",
+    var badges: Badges = Badges(),
+    var checkItemStates: List<Any> = kotlin.emptyList(),
+    var closed: Boolean = false,
+    var dateLastActivity: String? = "",
+    var desc: String = "",
+    var descData: Any? = "",
+    var due: String? = "",
+    var email: String? = "",
+    var idAttachmentCover: String? = "",
+    var idBoard: String = "",
+    var idChecklists: List<Checklist> = kotlin.emptyList(),
+    var idLabels: List<Any> = kotlin.emptyList(),
+    var idList: String = "",
+    var idMembers: List<Any> = kotlin.emptyList(),
+    var idMembersVoted: List<Any> = kotlin.emptyList(),
+    var idShort: Int = 0,
+    var labels: List<Any> = kotlin.emptyList(),
+    var manualCoverAttachment: Boolean? = false,
+    var name: String = "",
+    var pos: Double = 0.0,
+    var shortLink: String = "",
+    var shortUrl: String = "",
+    var subscribed: Boolean? = false,
+    var url: String = ""
+) {
+
+    public fun addChecklist(checklist: Checklist) {
+        this.idChecklists += checklist
+    }
+}
 
 public data class Badges (
         val votes: Int = 0,
