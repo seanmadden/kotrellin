@@ -25,7 +25,10 @@ class Trello(key: String, token: String) {
     private val apiUrl = "https://api.trello.com/$apiVersion"
     private val key = key
     private val token = token
-    private val gson = GsonBuilder().setPrettyPrinting().create()
+    private val gson = GsonBuilder()
+            .setPrettyPrinting()
+            .registerTypeAdapter(Card::class.java, CardSerializer())
+            .create()
 
     private fun makeRequest(verb: String, url: String) : Response {
         //TODO: Move response code handling here
